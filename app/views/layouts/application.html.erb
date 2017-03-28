@@ -40,7 +40,13 @@
         </div>
       <% end %>
 
-      <%= yield %>
+      <%= yield :top_content %>
+
+      <div class="container">
+          <h1><%= yield :header %></h1>
+        <%= yield %>
+      </div>
+
     </div>
   </body>
 </html>
