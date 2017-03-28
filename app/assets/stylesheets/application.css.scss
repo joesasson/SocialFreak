@@ -12,3 +12,9 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ nav {
+   img {
+     max-width: 48px;
+   }
+ }

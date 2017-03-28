@@ -9,4 +9,16 @@ class SessionsController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def auth_failure
+    redirect_to root_path
+  end
+
+  def destroy
+    if current_user
+      session.delete(:user_id)
+      flash[:success] = 'Successfully Logged Out'
+    end
+    redirect_to root_path
+  end
 end

@@ -16,7 +16,16 @@ gem 'puma', '~> 3.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 
+# For storing env variables
+gem "figaro"
+
+# Oauth Strategies
+gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+# gem 'omniauth-facebook'
+gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-github'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
