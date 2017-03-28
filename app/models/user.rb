@@ -1,12 +1,13 @@
 class User < ApplicationRecord
+  has_many :identities
+  validates :email, uniqueness: true
   class << self
-    def from_omniauth(auth_hash)
-      user = User.find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+    def create_from_omniauth(auth_hash)
+      user = User.new
       user.name = auth_hash['info']['name']
       user.email = auth_hash['info']['email']
-      user.location = get_social_location_for(user.provider, auth_hash['info']['location'])
+      user.location = get_social_location_for(auth_hash['provider'], auth_hash['info']['location'])
       user.image_url = auth_hash['info']['image']
-      user.url = get_social_url_for(user.provider, auth_hash['info']['urls'])
       user.save
       user
     end

@@ -7,11 +7,8 @@
       <ul>
         <li><strong>Name:</strong> <%= current_user.name %></li>
         <li><strong>Email:</strong> <%= current_user.email %></li>
-        <li><strong>Provider:</strong> <%= current_user.provider %></li>
-        <li><strong>uID:</strong> <%= current_user.uid %></li>
         <li><strong>Location:</strong> <%= current_user.location %></li>
         <li><strong>Avatar URL:</strong> <%= link_to current_user.image_url, current_user.image_url %></li>
-        <li><strong><%= current_user.provider %> URL:</strong> <%= link_to current_user.url, current_user.url %></li>
       </ul>
     </div>
   </div>

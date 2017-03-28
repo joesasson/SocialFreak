@@ -1,9 +1,16 @@
 class SessionsController < ApplicationController
   def create
     begin
-      @user = User.from_omniauth(request.env['omniauth.auth'])
-      session[:user_id] = @user.id
-      flash[:success] = "Welcome, #{@user.name}"
+      auth = request.env['omniauth.auth']
+      # @user = User.from_omniauth(request.env['omniauth.auth'])
+      unless @identity = Identity.find_with_omniauth(auth)
+        @identity = Identity.create_with_omniauth(auth)
+      end
+
+
+
+      session[:user_id] = @identity.user.id
+      flash[:success] = "Welcome, #{@identity.user.name}"
     rescue
       flash[:warning] = "There was an error with the authentication"
     end
