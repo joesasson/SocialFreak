@@ -1,7 +1,15 @@
 class Identity < ApplicationRecord
+  devise :omniauthable, :omniauth_providers => [:twitter, :github, :linkedin, :google]
   belongs_to :user
   validates_uniqueness_of :uid, :scope => :provider
   class << self
+    def from_omniauth(auth_hash)
+      unless identity = find_with_omniauth(auth_hash)
+        identity = create_with_omniauth(auth_hash)
+      end
+      identity
+    end
+
     def find_with_omniauth(auth_hash)
       Identity.find_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
     end
